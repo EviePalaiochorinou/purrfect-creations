@@ -45,3 +45,19 @@ def get_revenue():
             revenue += fields["price"]
     
     return revenue
+
+@router.get('/orders-most-recent')
+def get_recent_orders():
+    orders = airtable_api_client.get_orders()
+    recent_orders = orders[:10]
+    return recent_orders
+
+@router.get('/orders-placed')
+def get_placed_orders():
+    orders = airtable_api_client.get_orders()
+    placed_orders = []
+    for order in orders:
+        fields = order["fields"]
+        if fields["order_status"] == "placed":
+            placed_orders.append(order)
+    return placed_orders
