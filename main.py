@@ -1,7 +1,5 @@
 from fastapi import FastAPI
+from router import order
 
 app = FastAPI()
-
-@app.get("/")
-async def root():
-    return {"message": "Welcome to Purrfect Creations"}
+app.include_router(order.router)

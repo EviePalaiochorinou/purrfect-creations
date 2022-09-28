@@ -6,8 +6,7 @@ class AirtableApiClient:
 
     # Total orders, number of orders in progress, and total number of orders this month
     def get_orders():
-        return {
-        "records": [
+        return [
             {
                 "id": "rec9DWw5D4uSUq1zS",
                 "createdTime": "2021-10-06T09:16:38.000Z",
@@ -39,8 +38,6 @@ class AirtableApiClient:
                 }
             }
         ]
-    }
-
     # Revenue after removing cancelled orders, keeps only price and order status fields
     def get_revenue():
         return {
