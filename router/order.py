@@ -24,3 +24,24 @@ def get_total_orders_this_month():
             orders_this_month.append(order)
     return orders_this_month
 
+@router.get('/orders-in-progress')
+def get_orders_in_progress():
+    orders = airtable_api_client.get_orders()
+    orders_in_progress = []
+    for order in orders:
+        fields = order["fields"]
+        if fields["order_status"] == "in_progress":
+            orders_in_progress.append(order)
+    return len(orders)
+
+@router.get('/revenue')
+def get_revenue():
+    orders = airtable_api_client.get_orders()
+    # Valid orders are all orders minus the cancelled ones
+    revenue = 0
+    for order in orders:
+        fields = order["fields"]
+        if fields["order_status"] != "cancelled":
+            revenue += fields["price"]
+    
+    return revenue
