@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from client import airtable_api_client
 from datetime import datetime
+from fastapi import HTTPException, status
 
 router = APIRouter(
     prefix='/dashboard',
@@ -10,7 +11,12 @@ router = APIRouter(
 @router.get('/')
 def get_aggregate_data():
     client = airtable_api_client.AirtableApiClient()
-    orders = client.get_orders()
+    try:
+        orders = client.get_orders()
+    except Exception:
+        raise HTTPException(status_code = status.HTTP_500_INTERNAL_SERVER_ERROR,
+        detail = f"Something went wrong.")
+    
     aggregate_data = {
         "number of orders": _get_orders(orders),
         "number of orders this month": _get_total_orders_this_month(orders),
