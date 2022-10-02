@@ -57,7 +57,7 @@ def _get_revenue(orders):
         if fields["order_status"] != "cancelled":
             revenue += fields["price"]
     # Ideally a float with two decimal places
-    return revenue
+    return round(revenue, 2)
 
 def _get_recent_orders(orders):
     recent_orders = orders[:10]
