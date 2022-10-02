@@ -78,10 +78,7 @@ In the dashboard directory:
 You can run the tests using:
 ```shell script
 pytest -s -v
-```
-In order to test my application, for every API endpoint, I first write a simple handler test with the expectation of successful HTTP response.  
-I chose to go with integration tests over unit tests, so requests tests were the best kind to go forward with.  
-All requests to the third-party API are mocked, since in real life we would not make real HTTP requests for every test every time.  
+```  
 
 ## Implementation  
 
@@ -98,9 +95,9 @@ This is so that we only make one call to the external API, to make our app faste
 - An exception is raised (at the handler level) when the external API is unreachable. 
 
 ### Testing  
-  
-- Ideally, there would be another, separate test file that tests the client api (Airtable API).  
-- Normally, there would be test classes and initial set up steps before defining the tests.??????????? 
+
+- In order to test my application, for every API endpoint, I first write a simple handler test with the expectation of successful HTTP response.  
+- I chose to go with integration tests over unit tests, so requests tests were the best kind to go forward with.   
+- Ideally, here I would mock the Airtable Api Client in order to write more tests that do not make real calls to the external api. This way I can test if I get the responses I am expecting.
 - Future work includes to aim for 100% test coverage and include tests for all edge cases.  
 
-### Future Work
