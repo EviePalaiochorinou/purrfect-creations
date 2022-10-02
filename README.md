@@ -36,7 +36,10 @@ Key figures on dashboard:
     ```sh
    git clone https://github.com/EviePalaiochorinou/purrfect-creations.git
    ```
-
+2. Export Airtable api key to an environment variable
+   ```sh
+    export AIRTABLE_KEY=<your-airtble-api-key>
+   ```
 2. Activate your virtual environment
 
 3. Install the requirements
